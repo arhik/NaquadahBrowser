@@ -35,16 +35,17 @@ function FetchPage(document, URL::String)
     node = document.children[1]
        # .......................................................................
        # get the file...
+       Page_text = Ref{Any}()
        uri = HTTP.parse(HTTP.URI, URL)
               if uri.scheme == "file"
                  File = pwd() * uri.path
-                       Page_text = open(f->read(f, String), File)
+                       Page_text[] = open(f->read(f, String), File)
               elseif uri.scheme == "http" || uri.scheme == "https"
                   got = HTTP.request("GET", URL; verbose=3).body
-                  Page_text = readall(got)
+                  Page_text[] = readall(got)
               end
 
-        pageContent = readSml(Page_text)
+        pageContent = readSml(Page_text[])
         # ......................................................................
         document.styles = Dict("charset"=>"utf-8")
         document.head = Dict("charset"=>"utf-8","author"=>"Travis Deane Ashworth","links"=>Dict("url"=>"http://travis.net16.net/test.sml"),"keywords"=>"web tech,browser concept,sml Pages,fragmented web tech","title"=>"MyPage")

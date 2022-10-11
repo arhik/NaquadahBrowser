@@ -327,7 +327,7 @@ end
 #-==============================================================================
 #
 #-==============================================================================
-function addAttributes(node, style)  classname, stylesDict
+function addAttributes(node, style) # classname, stylesDict
 
 		attrs = collect(keys(style))
 		for a in attrs

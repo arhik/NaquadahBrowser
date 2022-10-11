@@ -1,6 +1,6 @@
-if Sys.islinux()
+if Sys.islinux() || Sys.isapple()
     global PATH = pwd() * "/src/SamplePages/BrowserImages/"
-elseif is_windows() # Do something windows-y here
+elseif Sys.iswindows() # Do something windows-y here
     global PATH = pwd() * "/src\\SamplePages\\BrowserImages\\"
 end
 
